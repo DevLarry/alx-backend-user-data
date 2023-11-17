@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """User declaration"""
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String
 
 Base = declarative_base()

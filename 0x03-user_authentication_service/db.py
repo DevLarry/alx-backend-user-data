@@ -88,6 +88,7 @@ class DB:
                 raise ValueError
         self._session.commit()
 
+
 if __name__ == "__main__":
     my_db = DB()
     user_1 = my_db.add_user("test@test.com", "SuperHashedPwd")

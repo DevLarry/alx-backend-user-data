@@ -16,6 +16,7 @@ class User(Base):
     session_id = Column(String, nullable=True)
     reset_token = Column(String, nullable=True)
 
+
 if __name__ == "__main__":
     print(User.__tablename__)
     for column in User.__table__.columns:

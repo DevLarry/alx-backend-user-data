@@ -11,9 +11,10 @@ from uuid import uuid4
 class SessionAuth(Auth):
     """Session authentication implementation"""
     user_id_by_session_id = {}
+
     def create_session(self, user_id: str = None) -> str:
         """Creates a session"""
-        if user_id is None: 
+        if user_id is None:
             return None
         if not isinstance(user_id, str):
             return None

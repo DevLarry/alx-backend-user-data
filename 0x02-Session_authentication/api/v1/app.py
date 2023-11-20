@@ -42,7 +42,7 @@ def bef_req():
         cookie = auth.session_cookie(request)
         header = auth.authorization_header(request)
         if auth.require_auth(request.path, excluded):
-            if header is None or cookie is None:
+            if header is None and cookie is None:
                 abort(401, description="Unauthorized")
 
             if header is None:

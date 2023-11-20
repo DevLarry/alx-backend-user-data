@@ -7,6 +7,8 @@ Definition of class SessionAuth
 from api.v1.auth.auth import Auth
 from uuid import uuid4
 
+from models.user import User
+
 
 class SessionAuth(Auth):
     """Session authentication implementation"""
@@ -21,6 +23,12 @@ class SessionAuth(Auth):
         session_id = str(uuid4())
         self.user_id_by_session_id[session_id] = user_id
         return session_id
+
+    def current_user(self, request=None):
+        """Gets the currently logged in user"""
+        cookie = self.session_cookie(request)
+        user_id = self.user_id_for_session_id(cookie)
+        return User.get(user_id)
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
         """get the userId or the session Id passed"""

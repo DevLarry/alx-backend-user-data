@@ -39,11 +39,13 @@ def bef_req():
             '/api/v1/forbidden/',
             '/api/v1/auth_session/login/'
         ]
+        cookie = auth.session_cookie(request)
+        header = auth.authorization_header(request)
         if auth.require_auth(request.path, excluded):
-            if auth.session_cookie(request) is None:
-                if auth.authorization_header(request) is None:
-                    abort(401, description="Unauthorized")
-            if auth.authorization_header(request) is None:
+            if header is None and cookie is None:
+                abort(401, description="Unauthorized")
+
+            if header is None:
                 abort(401, description="Unauthorized")
             if auth.current_user(request) is None:
                 abort(403, description="Forbidden")

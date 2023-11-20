@@ -7,6 +7,7 @@ from typing import (
     List,
     TypeVar
 )
+from os import getenv
 
 
 class Auth:
@@ -56,3 +57,10 @@ class Auth:
         Returns a User instance from information from a request object
         """
         return None
+
+    def session_cookie(self, request=None):
+        """returns a cookie value from request"""
+        if request is None:
+            return None
+        session_id = getenv("SESSION_NAME")
+        return request.cookies.get(session_id)

@@ -26,3 +26,4 @@ def login():
     id = auth.create_session(user.id)
     res = jsonify(user.to_json())
     res.set_cookie(os.getenv("SESSION_NAME"), id)
+    return res
